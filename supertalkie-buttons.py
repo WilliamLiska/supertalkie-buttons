@@ -14,6 +14,10 @@ GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # GPIO 24 set up as an input, pulled down, connected to 3V3 on button press
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+# GPIO 16 set up as output for LED
+GPIO.setup(16, GPIO.OUT)
+GPIO.output(16, GPIO.LOW)
+
 # now we'll define two threaded callback functions
 # these will run in another thread when our events are detected
 def my_callback(channel):
@@ -21,7 +25,9 @@ def my_callback(channel):
 
 def my_callback2(channel):
     print "falling edge detected on 17"
+    GPIO.output(16, GPIO.HIGH)
     subprocess.Popen("sudo node server.js ForceChange", cwd='/home/mumble/raspberry-wifi-conf', shell=True)
+    GPIO.output(16, GPIO.LOW)
 
 print "Make sure you have a button connected so that when pressed"
 print "it will connect GPIO port 17 (pin 16) to GND (pin 6)\n"
@@ -29,7 +35,6 @@ print "You will also need a second button connected so that when pressed"
 print "it will connect GPIO port 24 (pin 18) to 3V3 (pin 1)\n"
 print "You will also need a third button connected so that when pressed"
 print "it will connect GPIO port 27 (pin 11) to GND (pin 14)"
-
 
 # when a falling edge is detected on port 27, regardless of whatever
 # else is happening in the program, the function my_callback will be run
