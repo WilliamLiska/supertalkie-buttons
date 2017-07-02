@@ -3,10 +3,8 @@ Description=Supertalkie Buttons
 After=multi-user.target
 
 [Service]
-User=mumble
-Group=mumble
 Type=simple
-ExecStart=sudo /usr/bin/python /home/mumble/supertalkie-buttons/supertalkie-buttons.py
+ExecStart=/usr/bin/python /home/mumble/supertalkie-buttons/supertalkie-buttons.py
 Restart=on-abort
 
 [Install]
