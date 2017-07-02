@@ -5,11 +5,11 @@ import RPi.GPIO as GPIO
 import subprocess
 GPIO.setmode(GPIO.BCM)
 
-# GPIO 17 & 27 set up as inputs, pulled up to avoid false detection.
+# GPIO 17 & 5 set up as inputs, pulled up to avoid false detection.
 # Both ports are wired to connect to GND on button press.
 # So we'll be setting up falling edge detection for both
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # GPIO 26 set up as an input, pulled down, connected to 3V3 on button press
 GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -21,7 +21,7 @@ GPIO.output(16, GPIO.LOW)
 # now we'll define two threaded callback functions
 # these will run in another thread when our events are detected
 def my_callback(channel):
-    print "falling edge detected on 27"
+    print "falling edge detected on 5"
 
 def my_callback2(channel):
     print "falling edge detected on 17"
@@ -34,11 +34,11 @@ print "it will connect GPIO port 17 (pin 11) to GND (pin 6)\n"
 print "You will also need a second button connected so that when pressed"
 print "it will connect GPIO port 26 (pin 37) to 3V3 (pin 1)\n"
 print "You will also need a third button connected so that when pressed"
-print "it will connect GPIO port 27 (pin 13) to GND (pin 14)"
+print "it will connect GPIO port 5 (pin 29) to GND (pin 14)"
 
-# when a falling edge is detected on port 27, regardless of whatever
+# when a falling edge is detected on port 5, regardless of whatever
 # else is happening in the program, the function my_callback will be run
-GPIO.add_event_detect(27, GPIO.FALLING, callback=my_callback, bouncetime=300)
+GPIO.add_event_detect(5, GPIO.FALLING, callback=my_callback, bouncetime=300)
 
 # when a falling edge is detected on port 17, regardless of whatever
 # else is happening in the program, the function my_callback2 will be run

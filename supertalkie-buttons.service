@@ -1,6 +1,6 @@
 [Unit]
 Description=Supertalkie Buttons
-After=multi-user.target
+After=multi-user.target mumble.service
 
 [Service]
 Type=simple
