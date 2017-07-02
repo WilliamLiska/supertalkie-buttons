@@ -11,8 +11,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-# GPIO 22 set up as an input, pulled down, connected to 3V3 on button press
-GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+# GPIO 26 set up as an input, pulled down, connected to 3V3 on button press
+GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 # GPIO 16 set up as output for LED
 GPIO.setup(16, GPIO.OUT)
@@ -30,11 +30,11 @@ def my_callback2(channel):
     GPIO.output(16, GPIO.LOW)
 
 print "Make sure you have a button connected so that when pressed"
-print "it will connect GPIO port 17 (pin 16) to GND (pin 6)\n"
+print "it will connect GPIO port 17 (pin 11) to GND (pin 6)\n"
 print "You will also need a second button connected so that when pressed"
-print "it will connect GPIO port 22 (pin 18) to 3V3 (pin 1)\n"
+print "it will connect GPIO port 26 (pin 37) to 3V3 (pin 1)\n"
 print "You will also need a third button connected so that when pressed"
-print "it will connect GPIO port 27 (pin 11) to GND (pin 14)"
+print "it will connect GPIO port 27 (pin 13) to GND (pin 14)"
 
 # when a falling edge is detected on port 27, regardless of whatever
 # else is happening in the program, the function my_callback will be run
@@ -46,9 +46,9 @@ GPIO.add_event_detect(27, GPIO.FALLING, callback=my_callback, bouncetime=300)
 GPIO.add_event_detect(17, GPIO.FALLING, callback=my_callback2, bouncetime=300)
 
 try:
-    print "Waiting for rising edge on port 22"
-    GPIO.wait_for_edge(22, GPIO.RISING)
-    print "Rising edge detected on port 22. Here endeth the third lesson."
+    print "Waiting for rising edge on port 26"
+    GPIO.wait_for_edge(26, GPIO.RISING)
+    print "Rising edge detected on port 26. Here endeth the third lesson."
 
 except KeyboardInterrupt:
     GPIO.cleanup()       # clean up GPIO on CTRL+C exit
