@@ -32,14 +32,14 @@ def volume_up_callback(channel):
     print "falling edge detected on 27"
     GPIO.output(16, GPIO.HIGH)
     #make volume go up
-    subprocess.Popen("amixer sset Master 10%+", shell=True)
+    subprocess.Popen("amixer sset Speaker 10%+", shell=True)
     GPIO.output(16, GPIO.LOW)
 
 def volume_down_callback(channel):
     print "falling edge detected on 22"
     GPIO.output(16, GPIO.HIGH)
     #make volume go down
-    subprocess.Popen("amixer sset Master 10%-", shell=True)
+    subprocess.Popen("amixer sset Speaker 10%-", shell=True)
     GPIO.output(16, GPIO.LOW)
 
 # when a falling edge is detected on an input port, regardless of whatever
