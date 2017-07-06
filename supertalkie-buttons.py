@@ -9,8 +9,8 @@ GPIO.setmode(GPIO.BCM)
 # Both ports are wired to connect to GND on button press.
 # So we'll be setting up falling edge detection for both
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(27, GPOIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(22, GPOIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # GPIO 26 set up as an input, pulled down, connected to 3V3 on button press
 GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -32,14 +32,14 @@ def volume_up_callback(channel):
     print "falling edge detected on 27"
     GPIO.output(16, GPIO.HIGH)
     #make volume go up
-    subprocess.Popen("amixer sset Master 10%+" shell=True)
+    subprocess.Popen("amixer sset Master 10%+", shell=True)
     GPIO.output(16, GPIO.LOW)
 
 def volume_down_callback(channel):
     print "falling edge detected on 22"
     GPIO.output(16, GPIO.HIGH)
     #make volume go down
-    subprocess.Popen("amixer sset Master 10%-" shell=True)
+    subprocess.Popen("amixer sset Master 10%-", shell=True)
     GPIO.output(16, GPIO.LOW)
 
 # when a falling edge is detected on an input port, regardless of whatever
